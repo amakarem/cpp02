@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:35:15 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/05/17 21:10:05 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:52:21 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ Fixed::Fixed(void)
 }
 Fixed::Fixed(int v)
 {
-	val = v;
+	val = v << Fixed::fract;;
 	std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(float v)
 {
-	val = v;
+	val = roundf(v * (1 << Fixed::fract));
 	std::cout << "Float constructor called\n";
 }
 
@@ -45,7 +45,8 @@ Fixed::Fixed(Fixed const &cpy)
 Fixed &Fixed::operator = (Fixed const &cpy)
 {
 	std::cout << "Copy assignment operator called\n";
-	this->val = cpy.getRawBits();
+	if (this != &cpy)
+		this->val = cpy.getRawBits();
 	return (*this);
 }
 
@@ -61,12 +62,12 @@ void	Fixed::setRawBits(const int raw)
 }
 int	Fixed::toInt(void) const
 {
-	return (trunc(this->val));
+	return (this->val >> Fixed::fract);
 }
 
 float	Fixed::toFloat(void) const
 {
-	return (this->val);
+	return ((float)this->val / (float)(1 << Fixed::fract));
 }
 
 std::ostream	&operator<<(std::ostream &str, Fixed const &nbr)
