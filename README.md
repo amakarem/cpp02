@@ -73,11 +73,7 @@ Implement a function that determines whether a point is inside a triangle.
 
 ---
 
-## ⚙️ Compilation and Execution
-
-To compile and run the exercises:
-
-Clone the repository:
+## ⚙️ Clone the repository
 
    ```bash
    git clone https://github.com/amakarem/cpp02.git
