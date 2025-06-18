@@ -79,3 +79,4 @@ Implement a function that determines whether a point is inside a triangle.
    git clone https://github.com/amakarem/cpp02.git
    cd cpp02
   ```
+   run `make` inside each ex folder to compile 
